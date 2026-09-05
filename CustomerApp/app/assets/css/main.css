@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Base surfaces */
+  --color-cream: #FBF6EE;
+  --color-cream-soft: #F3EDE1;
+  --color-surface: #FFFFFF;
+  --color-ink: #1E2B27;
+  --color-ink-soft: #5C6D67;
+  --color-line: #E7E0D3;
+
+  /* Primary: deep sage/teal */
+  --color-primary-50: #EAF3EE;
+  --color-primary-100: #CFE6D9;
+  --color-primary-300: #7CB69C;
+  --color-primary-500: #2F7A63;
+  --color-primary-600: #256351;
+  --color-primary-700: #1B4B3D;
+  --color-primary-900: #0F2E25;
+
+  /* Accent: warm coral (CTAs, urgency) */
+  --color-accent-100: #FFE4D9;
+  --color-accent-400: #FF9270;
+  --color-accent-500: #FF6B45;
+  --color-accent-600: #E85630;
+
+  /* Status */
+  --color-warn-100: #FFF3D6;
+  --color-warn-600: #B8860B;
+  --color-danger-100: #FBE3E0;
+  --color-danger-600: #C4432E;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 8px 24px -12px rgba(30, 43, 39, 0.18);
+  --shadow-lift: 0 16px 32px -16px rgba(30, 43, 39, 0.28);
+}
+
+html, body, #__nuxt {
+  height: 100%;
+}
+
+body {
+  background: var(--color-cream-soft);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+}

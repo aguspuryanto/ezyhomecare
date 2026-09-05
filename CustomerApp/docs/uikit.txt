@@ -1,0 +1,925 @@
+Bisa. Untuk panduan awal, saya sarankan kita **jangan langsung mendesain semua halaman**. Mulai dari **design system + 8 layar utama customer + 5 layar therapist + dashboard admin**. Fokusnya mobile-first karena mayoritas booking akan dilakukan dari HP.
+
+## 1. Konsep Visual
+
+Saya akan arahkan desain ke:
+
+> **“Professional Healthcare + Warm Wellness”**
+
+Bukan terlalu klinis seperti rumah sakit, dan bukan terlalu santai seperti aplikasi pijat biasa.
+
+### Karakter
+
+* Bersih
+* Profesional
+* Tenang
+* Ramah
+* Terpercaya
+* Modern
+* Mudah digunakan pengguna usia 30–55 tahun
+
+![Image](https://images.openai.com/static-rsc-4/kFGuiI-nYzgjL5Jec7JtA3bg4LjNaILtRsVYxgcGSnsKQ97ea9PVF2QV07oxWPcEPqWVHJWbNsZjZUlMz3-ifR4hD_u_oaUSJogZXOHWL2jcZeEZumseO_NS8qHuoDgw4g1eSthOBCgUXpR8mNowvTWWbxVnmHxooQLyI-xbPnq131vpobvx0F1cEIBg8Mw5?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/YkFOnCWSRzlXiIDGTbQZhzD1CRkMtqGaY3HXBijtDmoPNMcg_GXynQc_foRDTLVeMcmnD248SEE-e9F28cgc-JGuVWw62bAIynsD3zBDSEusqF40vcVrrzdo9KlHCZ48l_XEBbsUHg2Qukxv0JXReOsbi7I1wmTcVoyaBpSJcQFoxHSQZzdeaIRP_KjFdA67?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/JP0Lvv_i3i9vg3yPLEiNCLMg_dJxdxwMzeiMgjM5pa8UqVXldp6u-LzHIpf8aQS0q_2cFkUOCLSWROXfk2zLBnK7B9fkBjddADc87rzt6_mDo42bBBilRCxPzFy3WgGAnuCwCwmamMcQ2TvJJzx1xeJ87hHtl452z41BRNCOeEEBxzX7BLM51j0NxRs3USmN?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/qgOLNzLKdhAbbbVzyapCTcbQqvI7jWYYYEs6M4zsWWw_-ga2dLIi_p0aYuUfFw6rlDmoc-HQN1M1eDFpznWQ3N8Yk4u7M23O6DdT69sy0WhOH7e4yxyCK-yAeeniC9CtPt9nQDbOuGpV9U2XL7U_1a9qz3JYcj42CGqcET0rVqi0O-3SooB0R4kbn1nWVQ3z?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/hn0-peOsW8lcg69ny551bNLUGeCUNZBg7bXzpcUKLXpyhK4Scg2CVx7dE8i3YvD0Y1IYUoyFMqsYCQ2fcybRLQ8RTSNDN9_9VDPhZSXM889XjXwyjThHy96AGTXNs3B7aMqLSAfe7Ci2exIXlYo4WZFBLE77OTrTAA3GZeXYs7ZvqnAaHMV_FDW7dz9S_UXX?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/vpTP7dNYmrFI9hvZs5vkJ0zNM7A8NBKOXT3Dpm8ZKYtp0TqDAqQ12aWhCCoKjyA7oFpaB7Z9lcaTh7nNXR2gj3HxD7Yi5FgRHO8-ksSQADtGxGwfo9pj_4zFokwaitQ0adHABYoPWmvmeDB0yGhjCoL2_Z23bJ6TnlbA9g65s-rPWbNRUA86sgMit_lxyKi0?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/5L4K4A_yCJdrb7Q1TB0wygGnobCwPYEtBSicQwAjaIB3xpSM077aAdPnyzm9Ch-IeKJNXIEc-zia07vR6tv3lAHmx8ILdN-hK8YjYmp_pY60G9cyKtS5Z_qGB9WRNBGPngUsUhQROoF179KL1Uyqo4BXxia3G5kBqgpFHhpWU81WQO4xBON-cK6nb-0Sf1Jo?purpose=fullsize)
+
+---
+
+# 2. Design Direction
+
+Saya menyarankan struktur visual seperti:
+
+```text
+┌──────────────────────────┐
+│ ☰   CareHome       🔔    │
+│                          │
+│ Halo, Agus 👋            │
+│ Butuh perawatan hari ini?│
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 🔍 Cari layanan...   │ │
+│ └──────────────────────┘ │
+│                          │
+│ Layanan                  │
+│                          │
+│ [Bekam] [Pijat] [Reflek] │
+│                          │
+│ Layanan Populer          │
+│ ┌──────────────────────┐ │
+│ │     IMAGE            │ │
+│ │ Bekam Sunnah         │ │
+│ │ ⭐ 4.9               │ │
+│ │ Rp150.000            │ │
+│ │ [Pesan]              │ │
+│ └──────────────────────┘ │
+│                          │
+├──────────────────────────┤
+│ 🏠    📅    ❤️    👤    │
+│ Home  Booking  Favorit Me│
+└──────────────────────────┘
+```
+
+---
+
+# 3. Warna
+
+Saya tidak menyarankan warna hijau medis yang terlalu kuat.
+
+Gunakan palette yang terasa **natural + premium**.
+
+### Primary
+
+```text
+Primary       #16877A
+Primary Dark  #10665D
+```
+
+### Secondary
+
+```text
+Warm          #F5A65B
+```
+
+### Background
+
+```text
+Background    #F7F9F8
+Surface       #FFFFFF
+```
+
+### Text
+
+```text
+Heading       #172321
+Body          #52605D
+Muted         #8A9693
+```
+
+### Status
+
+```text
+Success
+Warning
+Danger
+Info
+```
+
+Warna status jangan digunakan sebagai warna branding utama.
+
+---
+
+# 4. Typography
+
+Gunakan:
+
+**Inter**
+
+atau
+
+**Plus Jakarta Sans**
+
+Saya lebih memilih:
+
+### Plus Jakarta Sans
+
+Karena terasa lebih modern dan friendly.
+
+Contoh:
+
+```text
+Heading
+24–28px / Bold
+
+Section
+18–20px / SemiBold
+
+Body
+14–16px / Regular
+
+Caption
+12–13px
+```
+
+---
+
+# 5. Border Radius
+
+Jangan terlalu bulat seperti aplikasi fintech.
+
+Gunakan:
+
+```text
+Card       16px
+Button     12px
+Input      12px
+Image      16px
+Badge       8px
+```
+
+---
+
+# 6. Button
+
+Primary:
+
+```text
+┌────────────────────────────┐
+│        Pesan Sekarang      │
+└────────────────────────────┘
+```
+
+Secondary:
+
+```text
+┌────────────────────────────┐
+│        Lihat Detail        │
+└────────────────────────────┘
+```
+
+Pada mobile:
+
+**minimum height 48px**
+
+agar nyaman disentuh.
+
+---
+
+# 7. CUSTOMER — SCREEN 01
+
+# Homepage
+
+Ini halaman paling penting.
+
+```text
+┌──────────────────────────┐
+│                          │
+│ CareHome          🔔     │
+│                          │
+│ Hai, Agus 👋             │
+│ Perawatan langsung       │
+│ ke rumah Anda.           │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 🔍 Cari layanan      │ │
+│ └──────────────────────┘ │
+│                          │
+│ Layanan                  │
+│                          │
+│  ○        ○        ○     │
+│ Bekam    Pijat   Reflek  │
+│                          │
+│ ───────────────────────  │
+│                          │
+│ Layanan Populer          │
+│                          │
+│ ┌──────────────────────┐ │
+│ │                      │ │
+│ │       PHOTO          │ │
+│ │                      │ │
+│ ├──────────────────────┤ │
+│ │ Bekam Sunnah         │ │
+│ │ ⭐ 4.9                │ │
+│ │ 60 menit             │ │
+│ │ Rp150.000            │ │
+│ │                      │ │
+│ │ [   Pesan Sekarang ] │ │
+│ └──────────────────────┘ │
+│                          │
+├──────────────────────────┤
+│ 🏠    📅    ❤️     👤   │
+│ Home Booking Favorit Me │
+└──────────────────────────┘
+```
+
+---
+
+# 8. CUSTOMER — SCREEN 02
+
+# Category
+
+Ketika klik **Bekam**:
+
+```text
+┌──────────────────────────┐
+│ ← Bekam                  │
+│                          │
+│ 12 layanan tersedia      │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ IMAGE                │ │
+│ ├──────────────────────┤ │
+│ │ Bekam Sunnah         │ │
+│ │ ⭐ 4.9               │ │
+│ │ 60 menit             │ │
+│ │                      │ │
+│ │ Rp150.000            │ │
+│ │              [Pesan] │ │
+│ └──────────────────────┘ │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ IMAGE                │ │
+│ ├──────────────────────┤ │
+│ │ Bekam Premium        │ │
+│ │ ⭐ 4.8               │ │
+│ │ 90 menit             │ │
+│ │                      │ │
+│ │ Rp225.000            │ │
+│ │              [Pesan] │ │
+│ └──────────────────────┘ │
+└──────────────────────────┘
+```
+
+---
+
+# 9. CUSTOMER — SCREEN 03
+
+# Detail Service
+
+Ini harus menjadi halaman **conversion-oriented**.
+
+```text
+┌──────────────────────────┐
+│ ←                  ♡     │
+│                          │
+│       SERVICE IMAGE      │
+│                          │
+├──────────────────────────┤
+│ Bekam Sunnah             │
+│ ⭐ 4.9   128 reviews     │
+│                          │
+│ Rp150.000                │
+│                          │
+│ 60 menit                 │
+│ Home Service             │
+│                          │
+│ Tentang layanan          │
+│ ─────────────────────    │
+│ Layanan bekam dilakukan  │
+│ oleh terapis profesional │
+│ dan datang ke rumah Anda.│
+│                          │
+│ Apa yang didapat?        │
+│ ✓ Terapis profesional    │
+│ ✓ Peralatan dibawa       │
+│ ✓ Home service           │
+│                          │
+├──────────────────────────┤
+│ [     Pesan Sekarang    ]│
+└──────────────────────────┘
+```
+
+---
+
+# 10. CUSTOMER — SCREEN 04
+
+# Pilih Terapis
+
+```text
+┌──────────────────────────┐
+│ ← Pilih Terapis          │
+│                          │
+│ Bekam Sunnah             │
+│ Rp150.000 • 60 menit     │
+│                          │
+│ Terapis tersedia         │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 👨                   │ │
+│ │ Ahmad               ✓│ │
+│ │ ⭐ 4.9 (128)         │ │
+│ │ 5 tahun pengalaman   │ │
+│ │                      │ │
+│ │ [ Pilih Terapis ]    │ │
+│ └──────────────────────┘ │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 👩                   │ │
+│ │ Siti                │ │
+│ │ ⭐ 4.8 (96)          │ │
+│ │ 4 tahun pengalaman   │ │
+│ └──────────────────────┘ │
+└──────────────────────────┘
+```
+
+---
+
+# 11. CUSTOMER — SCREEN 05
+
+# Pilih Jadwal
+
+Ini harus dibuat **sangat sederhana**.
+
+```text
+┌──────────────────────────┐
+│ ← Pilih Jadwal           │
+│                          │
+│ Ahmad                    │
+│ ⭐ 4.9                   │
+│                          │
+│ Tanggal                  │
+│                          │
+│ 31   01   02   03   04   │
+│ SEN  SEL  RAB  KAM  JUM  │
+│                          │
+│ Jam tersedia             │
+│                          │
+│ ┌──────┐ ┌──────┐        │
+│ │09:00 │ │10:00 │        │
+│ └──────┘ └──────┘        │
+│                          │
+│ ┌──────┐ ┌──────┐        │
+│ │13:00 │ │14:00 │        │
+│ └──────┘ └──────┘        │
+│                          │
+│ ┌──────┐ ┌──────┐        │
+│ │15:00 │ │16:00 │        │
+│ └──────┘ └──────┘        │
+│                          │
+├──────────────────────────┤
+│ [ Lanjutkan ]            │
+└──────────────────────────┘
+```
+
+**Jangan menggunakan calendar yang terlalu kompleks.**
+
+---
+
+# 12. CUSTOMER — SCREEN 06
+
+# Lokasi
+
+Saya menyarankan UX seperti Gojek/Grab:
+
+```text
+┌──────────────────────────┐
+│ ← Lokasi Layanan         │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 🔍 Cari alamat       │ │
+│ └──────────────────────┘ │
+│                          │
+│        MAP               │
+│                          │
+│          📍              │
+│                          │
+│                          │
+├──────────────────────────┤
+│ Alamat layanan           │
+│                          │
+│ Rumah                    │
+│ Jl. XXXXX No. 123        │
+│ Surabaya                 │
+│                          │
+│ Catatan                  │
+│ "Rumah pagar hitam..."   │
+│                          │
+│ [ Gunakan Lokasi Saya ]  │
+│                          │
+│ [ Lanjutkan ]            │
+└──────────────────────────┘
+```
+
+---
+
+# 13. CUSTOMER — SCREEN 07
+
+# Checkout
+
+Ini harus **clean**.
+
+```text
+┌──────────────────────────┐
+│ ← Konfirmasi Booking     │
+│                          │
+│ LAYANAN                  │
+│ Bekam Sunnah             │
+│ 60 menit                │
+│                          │
+│ TERAPIS                  │
+│ Ahmad                    │
+│ ⭐ 4.9                   │
+│                          │
+│ JADWAL                   │
+│ Senin, 31 Agustus        │
+│ 14:00 - 15:00            │
+│                          │
+│ LOKASI                   │
+│ Jl. XXXXX No.123         │
+│ Surabaya                 │
+│                          │
+│ ─────────────────────    │
+│                          │
+│ Layanan        Rp150.000 │
+│ Home Service    Rp10.000 │
+│                          │
+│ Total          Rp160.000 │
+│                          │
+│ [     Bayar Sekarang    ]│
+└──────────────────────────┘
+```
+
+---
+
+# 14. CUSTOMER — SCREEN 08
+
+# Tracking Booking
+
+Setelah pembayaran, jangan hanya tampilkan:
+
+> Booking berhasil.
+
+Buat customer merasa **tenang**.
+
+```text
+┌──────────────────────────┐
+│ Booking #BK00123         │
+│                          │
+│        ✓                 │
+│   Booking Dikonfirmasi   │
+│                          │
+│ ─────────────────────    │
+│                          │
+│ ✓ Pembayaran             │
+│ │                        │
+│ ✓ Terapis dikonfirmasi   │
+│ │                        │
+│ ● Terapis menuju Anda    │
+│ │                        │
+│ ○ Terapis tiba           │
+│ │                        │
+│ ○ Layanan selesai        │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ Ahmad                │ │
+│ │ ⭐ 4.9               │ │
+│ │                      │ │
+│ │ [Hubungi Terapis]    │ │
+│ └──────────────────────┘ │
+│                          │
+│ [ Lihat Detail Booking ] │
+└──────────────────────────┘
+```
+
+---
+
+# 15. Therapist UI
+
+Untuk therapist, desain harus lebih **operational**.
+
+Tidak perlu banyak banner/promosi.
+
+Homepage:
+
+```text
+┌──────────────────────────┐
+│ CareHome          🔔     │
+│                          │
+│ Selamat pagi, Ahmad 👋   │
+│                          │
+│ Hari ini                │
+│                          │
+│ 3 Booking                │
+│ Rp450.000                │
+│                          │
+│ Booking berikutnya       │
+│                          │
+│ ┌──────────────────────┐ │
+│ │ 14:00                │ │
+│ │ Bekam Sunnah         │ │
+│ │                      │ │
+│ │ Budi                 │ │
+│ │ Surabaya             │ │
+│ │                      │ │
+│ │ [Lihat Booking]      │ │
+│ └──────────────────────┘ │
+│                          │
+│ Jadwal Hari Ini          │
+│                          │
+│ 16:00 Pijat Refleksi     │
+│ 18:00 Bekam              │
+│                          │
+├──────────────────────────┤
+│ Home Jadwal Income Me   │
+└──────────────────────────┘
+```
+
+---
+
+# 16. Therapist — Detail Booking
+
+```text
+┌──────────────────────────┐
+│ ← Booking #BK00123       │
+│                          │
+│ 14:00                    │
+│ Senin, 31 Agustus        │
+│                          │
+│ CUSTOMER                 │
+│ Budi                     │
+│ 08xxxxxxxx               │
+│                          │
+│ LOKASI                   │
+│ Jl. XXXXX No.123         │
+│ Surabaya                 │
+│                          │
+│ [ 📍 Navigasi ]          │
+│                          │
+│ LAYANAN                  │
+│ Bekam Sunnah             │
+│ 60 menit                 │
+│                          │
+├──────────────────────────┤
+│ [ Terima Booking ]       │
+└──────────────────────────┘
+```
+
+---
+
+# 17. Admin UI
+
+Desktop-first.
+
+Sidebar:
+
+```text
+┌──────────────────┐
+│ CareHome         │
+│                  │
+│ Dashboard        │
+│                  │
+│ MASTER           │
+│ Services         │
+│ Categories       │
+│ Therapists       │
+│ Customers        │
+│                  │
+│ TRANSACTIONS     │
+│ Bookings         │
+│ Payments         │
+│ Reviews          │
+│                  │
+│ MARKETING        │
+│ Promo            │
+│ Voucher          │
+│                  │
+│ REPORTS          │
+│ Sales            │
+│ Commission       │
+│                  │
+│ SETTINGS         │
+└──────────────────┘
+```
+
+Dashboard:
+
+```text
+┌────────────────────────────────────────────┐
+│ Dashboard                         Aug 2026 │
+│                                            │
+│ ┌────────┐ ┌────────┐ ┌────────┐ ┌──────┐ │
+│ │Booking │ │ GMV    │ │Revenue │ │Users │ │
+│ │  325   │ │25.5M   │ │ 5.1M   │ │ 820  │ │
+│ └────────┘ └────────┘ └────────┘ └──────┘ │
+│                                            │
+│ Booking Overview                           │
+│ ┌────────────────────────────────────────┐ │
+│ │              CHART                     │ │
+│ │                                        │ │
+│ └────────────────────────────────────────┘ │
+│                                            │
+│ Recent Booking                            │
+│                                            │
+│ #00123 Bekam   Ahmad   Rp150K  COMPLETED  │
+│ #00124 Pijat   Siti    Rp120K  CONFIRMED  │
+└────────────────────────────────────────────┘
+```
+
+---
+
+# 18. Design System Component
+
+Sebaiknya dari awal buat component library.
+
+### Buttons
+
+```text
+Button/Primary
+Button/Secondary
+Button/Outline
+Button/Danger
+Button/Icon
+```
+
+### Form
+
+```text
+Input
+Select
+Textarea
+Date Picker
+Time Picker
+Search
+```
+
+### Cards
+
+```text
+Service Card
+Therapist Card
+Booking Card
+Payment Card
+Review Card
+```
+
+### Status
+
+```text
+Pending
+Paid
+Confirmed
+On The Way
+Arrived
+In Service
+Completed
+Cancelled
+```
+
+### Navigation
+
+```text
+Navbar
+Bottom Navigation
+Sidebar
+Breadcrumb
+```
+
+---
+
+# 19. UX Principle yang Penting
+
+### 1. Maksimal 3–4 langkah booking
+
+Ideal:
+
+```text
+Service
+   ↓
+Therapist + Schedule
+   ↓
+Address
+   ↓
+Payment
+```
+
+Jangan membuat:
+
+```text
+Service
+↓
+Category
+↓
+Service
+↓
+Therapist
+↓
+Date
+↓
+Time
+↓
+Address
+↓
+Customer detail
+↓
+Promo
+↓
+Payment
+```
+
+Terlalu panjang.
+
+---
+
+### 2. Harga selalu terlihat
+
+Customer harus selalu tahu:
+
+> **Berapa yang harus dibayar.**
+
+---
+
+### 3. Jangan memaksa pilih therapist
+
+Berikan opsi:
+
+```text
+○ Pilihkan terapis untuk saya
+○ Pilih sendiri
+```
+
+Ini sangat berguna kalau customer tidak peduli siapa terapisnya.
+
+---
+
+### 4. Tampilkan "Available Today"
+
+Contoh:
+
+> 🟢 **5 terapis tersedia hari ini**
+
+Ini bagus untuk conversion.
+
+---
+
+### 5. Trust Elements
+
+Karena customer mengizinkan orang asing datang ke rumah, **trust adalah fitur utama**, bukan dekorasi.
+
+Tampilkan:
+
+```text
+✓ Terapis terverifikasi
+✓ Rating pelanggan
+✓ Jumlah layanan
+✓ Pengalaman
+✓ Foto terapis
+✓ Identitas terverifikasi
+```
+
+---
+
+# 20. Landing Page Desktop
+
+Untuk marketing:
+
+```text
+┌───────────────────────────────────────────────┐
+│ CareHome       Layanan  Terapis  Cara Kerja   │
+│                              [Masuk] [Daftar] │
+├───────────────────────────────────────────────┤
+│                                               │
+│     Perawatan Wellness                        │
+│     Langsung ke Rumah                         │
+│                                               │
+│     Bekam • Pijat • Refleksi • Akupunktur    │
+│                                               │
+│     [ Cari Layanan ]                          │
+│                                               │
+│                  [HERO IMAGE]                 │
+│                                               │
+├───────────────────────────────────────────────┤
+│ Kenapa CareHome?                              │
+│                                               │
+│   ✓ Terapis Terverifikasi                     │
+│   ✓ Datang ke Rumah                           │
+│   ✓ Booking Mudah                              │
+│   ✓ Pembayaran Aman                            │
+└───────────────────────────────────────────────┘
+```
+
+---
+
+# 21. Mobile UX yang Saya Rekomendasikan
+
+Target width utama:
+
+```text
+360px
+375px
+390px
+412px
+```
+
+Breakpoint:
+
+```text
+<576px    Mobile
+576–767   Large Mobile
+768–991   Tablet
+992–1199  Desktop
+≥1200     Large Desktop
+```
+
+Untuk aplikasi ini, **mobile jangan diperlakukan sebagai desktop yang diperkecil**.
+
+Buat mobile layout terlebih dahulu, kemudian scale ke tablet/desktop.
+
+---
+
+# 22. Struktur Figma
+
+Kalau nanti dibuat di Figma, saya akan susun:
+
+```text
+CareHome
+│
+├── 00 Cover
+│
+├── 01 Design System
+│   ├── Colors
+│   ├── Typography
+│   ├── Icons
+│   ├── Buttons
+│   ├── Forms
+│   ├── Cards
+│   └── Status
+│
+├── 02 Customer
+│   ├── Home
+│   ├── Category
+│   ├── Service Detail
+│   ├── Therapist
+│   ├── Schedule
+│   ├── Address
+│   ├── Checkout
+│   ├── Payment
+│   ├── Booking Tracking
+│   ├── History
+│   └── Profile
+│
+├── 03 Therapist
+│   ├── Dashboard
+│   ├── Booking
+│   ├── Schedule
+│   ├── Navigation
+│   ├── Service
+│   └── Income
+│
+└── 04 Admin
+    ├── Dashboard
+    ├── Booking
+    ├── Therapist
+    ├── Customer
+    ├── Services
+    ├── Payments
+    └── Reports
+```
+
+## Prioritas desain untuk mulai coding
+
+Saya akan mulai dari **10 layar ini dulu**:
+
+**Customer**
+
+1. Login/Register
+2. Home
+3. Service Detail
+4. Therapist Selection
+5. Schedule
+6. Address
+7. Checkout
+8. Payment Success
+9. Booking Tracking
+10. History
+
+Setelah flow ini sudah enak digunakan, baru dibuat **Therapist dan Admin**.
+
+Kalau tujuan Anda adalah langsung masuk tahap development, desain di atas sudah bisa dijadikan dasar **UI Kit + wireframe Figma + component specification untuk Bootstrap 5**.

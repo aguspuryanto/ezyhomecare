@@ -1,0 +1,1548 @@
+Tentu. Untuk **MVP**, saya sarankan aplikasi ini jangan dibuat seperti marketplace besar terlebih dahulu. Fokus pada **booking layanan home care → penjadwalan terapis → kunjungan → pembayaran → rating**, dengan arsitektur yang nantinya mudah dikembangkan menjadi marketplace multi-cabang/multi-terapis.
+
+# PRD — Aplikasi Home Care & Wellness
+
+### Web Responsive + PWA
+
+**Nama sementara:** `CareHome`
+**Platform:** Web App + PWA
+**Target:** Mobile-first, responsive desktop
+**Model:** Customer melakukan booking layanan ke terapis yang datang ke rumah.
+
+---
+
+## 1. Product Vision
+
+Aplikasi untuk memudahkan pelanggan memesan layanan kesehatan/wellness ke rumah seperti:
+
+* Akupunktur
+* Bekam
+* Pijat refleksi
+* Pijat tradisional
+* Massage
+* Pijat relaksasi
+* Terapi kebugaran
+* Layanan wellness lainnya
+
+Customer tidak perlu datang ke tempat praktik. Customer cukup:
+
+> **Pilih layanan → pilih jadwal → masukkan alamat → pilih terapis → bayar → terapis datang ke rumah.**
+
+---
+
+# 2. Target User
+
+Ada 3 role utama.
+
+### Customer
+
+Pengguna yang membutuhkan layanan home care.
+
+Fitur:
+
+* Register/login
+* Browse layanan
+* Pilih layanan
+* Pilih terapis
+* Pilih tanggal & jam
+* Input alamat
+* Booking
+* Pembayaran
+* Tracking status booking
+* Riwayat layanan
+* Rating/review
+
+### Therapist / Practitioner
+
+Contoh:
+
+* Terapis bekam
+* Terapis pijat
+* Terapis refleksi
+* Praktisi akupunktur
+
+Fitur:
+
+* Login
+* Profil
+* Jadwal kerja
+* Terima/tolak booking
+* Melihat booking
+* Detail customer
+* Navigasi ke lokasi
+* Update status kunjungan
+* Catatan layanan
+* Pendapatan
+
+### Admin
+
+Mengelola seluruh sistem.
+
+---
+
+# 3. Business Model
+
+Untuk MVP, gunakan model sederhana:
+
+### Commission Based
+
+Contoh:
+
+Customer membayar:
+
+**Rp150.000**
+
+Platform mengambil:
+
+**20% = Rp30.000**
+
+Terapis mendapatkan:
+
+**Rp120.000**
+
+Admin dapat mengatur:
+
+```text
+commission_type:
+- percentage
+- fixed
+```
+
+---
+
+# 4. Core User Flow
+
+## Customer
+
+```text
+Landing Page
+     ↓
+Pilih Layanan
+     ↓
+Detail Layanan
+     ↓
+Pilih Terapis
+     ↓
+Pilih Tanggal
+     ↓
+Pilih Jam
+     ↓
+Input Alamat
+     ↓
+Konfirmasi Booking
+     ↓
+Pembayaran
+     ↓
+Booking Berhasil
+     ↓
+Terapis Konfirmasi
+     ↓
+Terapis Berangkat
+     ↓
+Terapis Tiba
+     ↓
+Layanan Selesai
+     ↓
+Rating & Review
+```
+
+---
+
+# 5. Homepage
+
+Mobile-first.
+
+### Header
+
+```text
+[Logo]                    [Login]
+```
+
+Hero:
+
+> **Perawatan & Wellness Langsung ke Rumah**
+
+Subheadline:
+
+> Pesan akupunktur, bekam, pijat refleksi dan berbagai layanan wellness tanpa perlu keluar rumah.
+
+CTA:
+
+**[Cari Layanan]**
+
+---
+
+## Search
+
+```text
+🔍 Apa yang Anda butuhkan?
+
+[ Bekam              ]
+[ Pijat Refleksi     ]
+[ Akupunktur         ]
+```
+
+---
+
+# 6. Category
+
+Card kategori:
+
+```text
+┌───────────────┐
+│ 🩺            │
+│ Akupunktur    │
+└───────────────┘
+
+┌───────────────┐
+│ 🩹            │
+│ Bekam         │
+└───────────────┘
+
+┌───────────────┐
+│ 💆            │
+│ Refleksi      │
+└───────────────┘
+
+┌───────────────┐
+│ 🤲            │
+│ Massage       │
+└───────────────┘
+```
+
+---
+
+# 7. Service Catalog
+
+Admin dapat membuat layanan.
+
+Contoh:
+
+| Service           |   Durasi |     Harga |
+| ----------------- | -------: | --------: |
+| Bekam Sunnah      | 60 menit | Rp150.000 |
+| Bekam Premium     | 90 menit | Rp225.000 |
+| Pijat Refleksi    | 60 menit | Rp100.000 |
+| Full Body Massage | 90 menit | Rp175.000 |
+| Akupunktur        | 60 menit | Rp200.000 |
+
+Field:
+
+```text
+service_id
+category_id
+name
+description
+duration
+price
+discount_price
+image
+status
+```
+
+---
+
+# 8. Detail Service
+
+Contoh:
+
+## Bekam Sunnah
+
+**Rp150.000**
+
+Durasi:
+
+**60 menit**
+
+Deskripsi:
+
+> Layanan bekam yang dilakukan oleh terapis berpengalaman dan datang langsung ke rumah.
+
+Informasi:
+
+* Durasi 60 menit
+* Peralatan dibawa oleh terapis
+* Home service
+* Area layanan Surabaya
+
+CTA:
+
+### [Pesan Sekarang]
+
+---
+
+# 9. Therapist
+
+Customer dapat memilih terapis.
+
+Card:
+
+```text
+┌─────────────────────────┐
+│       [PHOTO]           │
+│                         │
+│ Ahmad                   │
+│ ⭐ 4.9 (128 review)     │
+│                         │
+│ Bekam • Massage         │
+│                         │
+│ Mulai Rp150.000         │
+│                         │
+│ [Lihat Profil]          │
+└─────────────────────────┘
+```
+
+Data:
+
+```text
+therapist
+- id
+- user_id
+- name
+- photo
+- bio
+- experience
+- gender
+- rating
+- total_review
+- status
+```
+
+---
+
+# 10. Therapist Profile
+
+```text
+Ahmad
+
+⭐ 4.9
+128 Reviews
+
+5 tahun pengalaman
+
+Spesialis:
+✓ Bekam
+✓ Pijat Tradisional
+✓ Refleksi
+```
+
+### Reviews
+
+```text
+⭐⭐⭐⭐⭐
+
+"Pelayanannya sangat bagus.
+Terapis datang tepat waktu."
+
+Budi
+```
+
+---
+
+# 11. Booking
+
+Ini merupakan **core feature MVP**.
+
+Step 1:
+
+### Pilih layanan
+
+```text
+Bekam Sunnah
+Rp150.000
+60 menit
+```
+
+Step 2:
+
+### Pilih Terapis
+
+```text
+Ahmad
+⭐ 4.9
+
+Siti
+⭐ 4.8
+```
+
+Step 3:
+
+### Pilih tanggal
+
+```text
+< 31 Aug >
+
+MON TUE WED THU FRI SAT SUN
+ 31   1   2   3   4   5   6
+```
+
+Step 4:
+
+### Pilih jam
+
+```text
+09:00
+10:00
+11:00
+13:00
+14:00
+15:00
+16:00
+```
+
+Slot unavailable:
+
+```text
+09:00  ✓
+10:00  ✓
+11:00  X
+13:00  ✓
+```
+
+---
+
+# 12. Address
+
+Customer dapat menyimpan beberapa alamat.
+
+```text
+Alamat Rumah
+
+Jl. Contoh No. 123
+Surabaya
+
+[Gunakan alamat ini]
+```
+
+Form:
+
+```text
+Nama penerima
+No HP
+Provinsi
+Kota
+Kecamatan
+Alamat
+Catatan lokasi
+Latitude
+Longitude
+```
+
+### Location
+
+MVP bisa menggunakan:
+
+**Leaflet + OpenStreetMap**
+
+Customer dapat:
+
+* menggunakan lokasi GPS
+* menggeser pin
+* memasukkan alamat manual
+
+---
+
+# 13. Booking Summary
+
+Sebelum pembayaran:
+
+```text
+DETAIL PESANAN
+
+Layanan
+Bekam Sunnah
+Rp150.000
+
+Terapis
+Ahmad
+
+Tanggal
+31 Agustus 2026
+
+Jam
+14:00 - 15:00
+
+Alamat
+Jl. Contoh No.123
+Surabaya
+
+────────────────
+
+Harga layanan      Rp150.000
+Biaya home service  Rp10.000
+────────────────────────
+TOTAL               Rp160.000
+
+[Bayar Sekarang]
+```
+
+---
+
+# 14. Payment
+
+MVP sebaiknya menggunakan payment gateway.
+
+Misalnya:
+
+* QRIS
+* Virtual Account
+* E-Wallet
+
+Status:
+
+```text
+UNPAID
+    ↓
+PENDING
+    ↓
+PAID
+```
+
+Payment table:
+
+```text
+payments
+- id
+- booking_id
+- invoice_no
+- amount
+- payment_method
+- transaction_id
+- status
+- paid_at
+```
+
+---
+
+# 15. Booking Status
+
+Gunakan status machine.
+
+```text
+PENDING_PAYMENT
+       ↓
+PAID
+       ↓
+WAITING_THERAPIST
+       ↓
+CONFIRMED
+       ↓
+ON_THE_WAY
+       ↓
+ARRIVED
+       ↓
+IN_SERVICE
+       ↓
+COMPLETED
+```
+
+Alternative:
+
+```text
+CANCELLED
+```
+
+---
+
+# 16. Therapist App
+
+Tidak perlu membuat aplikasi Android native.
+
+Gunakan **PWA**.
+
+Terapis membuka:
+
+```text
+carehome.id/therapist
+```
+
+kemudian:
+
+**Add to Home Screen**
+
+Sehingga terasa seperti aplikasi mobile.
+
+---
+
+# 17. Therapist Dashboard
+
+```text
+Selamat pagi, Ahmad
+
+TODAY
+
+3 Booking
+Rp450.000
+
+-------------------
+
+14:00
+Bekam Sunnah
+
+Budi
+Surabaya
+
+[Detail]
+
+-------------------
+
+16:00
+Pijat Refleksi
+
+Andi
+Surabaya
+
+[Detail]
+```
+
+---
+
+# 18. Therapist Booking Detail
+
+```text
+BOOKING #INV-20260831-001
+
+Customer
+Budi
+
+Phone
+08xxxxxxxx
+
+Service
+Bekam Sunnah
+
+Date
+31 Aug 2026
+
+Time
+14:00
+
+Address
+Jl. XXXXX
+
+[📍 Navigasi]
+
+----------------
+
+[Terima Booking]
+
+[Tolak]
+```
+
+Setelah menerima:
+
+```text
+[Mulai Perjalanan]
+```
+
+Status:
+
+```text
+ON_THE_WAY
+```
+
+Saat tiba:
+
+```text
+[Saya Sudah Tiba]
+```
+
+Status:
+
+```text
+ARRIVED
+```
+
+Kemudian:
+
+```text
+[Mulai Layanan]
+```
+
+Status:
+
+```text
+IN_SERVICE
+```
+
+Selesai:
+
+```text
+[Selesaikan Layanan]
+```
+
+---
+
+# 19. Service Notes
+
+Setelah layanan selesai:
+
+```text
+CATATAN LAYANAN
+
+Keluhan:
+____________________
+
+Tindakan:
+____________________
+
+Catatan:
+____________________
+
+Rekomendasi:
+____________________
+
+[Save]
+```
+
+**Catatan penting:** untuk MVP, hindari menjadikan aplikasi sebagai sistem diagnosis medis. Gunakan istilah **catatan layanan/wellness** dan tambahkan disclaimer bahwa layanan bukan pengganti diagnosis atau perawatan dokter.
+
+---
+
+# 20. Customer Dashboard
+
+```text
+Halo Agus 👋
+
+Booking Aktif
+
+┌────────────────────────┐
+│ Bekam Sunnah           │
+│ Ahmad                  │
+│ 31 Aug • 14:00         │
+│                        │
+│ 🟢 Terapis menuju Anda │
+│                        │
+│ [Detail Booking]       │
+└────────────────────────┘
+```
+
+---
+
+# 21. Customer History
+
+```text
+Riwayat
+
+Bekam Sunnah
+31 Aug 2026
+Rp150.000
+COMPLETED
+
+Pijat Refleksi
+20 Aug 2026
+Rp100.000
+COMPLETED
+```
+
+---
+
+# 22. Rating & Review
+
+Setelah booking selesai:
+
+```text
+Bagaimana layanan Anda?
+
+⭐⭐⭐⭐⭐
+
+Rating Terapis
+
+[_____________________]
+
+[ Kirim Review ]
+```
+
+Rating otomatis masuk ke:
+
+```text
+therapist.rating
+therapist.total_review
+```
+
+---
+
+# 23. Admin Dashboard
+
+Dashboard:
+
+```text
+┌──────────────┐
+│ Revenue      │
+│ Rp25.500.000 │
+└──────────────┘
+
+┌──────────────┐
+│ Booking      │
+│ 325          │
+└──────────────┘
+
+┌──────────────┐
+│ Customers    │
+│ 820          │
+└──────────────┘
+
+┌──────────────┐
+│ Therapists   │
+│ 35           │
+└──────────────┘
+```
+
+---
+
+# 24. Admin Modules
+
+### Master
+
+```text
+Categories
+Services
+Therapists
+Customers
+Areas
+```
+
+### Transaction
+
+```text
+Bookings
+Payments
+Refunds
+```
+
+### Marketing
+
+```text
+Promo
+Voucher
+Banner
+```
+
+### Review
+
+```text
+Reviews
+Ratings
+```
+
+### Reports
+
+```text
+Sales Report
+Booking Report
+Therapist Report
+Commission Report
+```
+
+---
+
+# 25. Therapist Management
+
+Admin:
+
+```text
+Therapist
+
+Ahmad
+Bekam
+Surabaya
+
+Status:
+ACTIVE
+
+Commission:
+20%
+
+[Edit]
+```
+
+Approval workflow:
+
+```text
+REGISTER
+   ↓
+PENDING VERIFICATION
+   ↓
+APPROVED
+   ↓
+ACTIVE
+```
+
+Untuk MVP, admin melakukan verifikasi manual.
+
+---
+
+# 26. Schedule Management
+
+Terapis menentukan jadwal:
+
+```text
+Monday
+09:00 - 17:00
+
+Tuesday
+09:00 - 17:00
+
+Wednesday
+OFF
+
+Thursday
+09:00 - 17:00
+```
+
+Break:
+
+```text
+12:00 - 13:00
+```
+
+Booking otomatis menghasilkan slot berdasarkan:
+
+```text
+working_hours
++
+service_duration
++
+existing_bookings
+```
+
+---
+
+# 27. Promo / Voucher
+
+MVP sederhana:
+
+```text
+Kode:
+WELCOME20
+
+Type:
+Percentage
+
+Value:
+20%
+
+Max Discount:
+Rp30.000
+
+Minimum Transaction:
+Rp100.000
+
+Expired:
+31 Dec 2026
+```
+
+---
+
+# 28. Notification
+
+Minimal:
+
+### Customer
+
+* Booking berhasil
+* Pembayaran berhasil
+* Booking dikonfirmasi
+* Terapis menerima booking
+* Terapis menuju lokasi
+* Terapis tiba
+* Layanan selesai
+
+### Therapist
+
+* Booking baru
+* Booking dibatalkan
+* Reminder booking
+
+Channel MVP:
+
+**Email + Web Push**
+
+WhatsApp bisa menjadi fase berikutnya.
+
+---
+
+# 29. PWA
+
+Karena target utama kemungkinan pengguna mobile, PWA sangat penting.
+
+Fitur:
+
+```text
+✓ Responsive
+✓ Installable
+✓ App Icon
+✓ Splash Screen
+✓ Web Manifest
+✓ Service Worker
+✓ Offline cache
+✓ Push Notification
+```
+
+Namun jangan memaksakan offline penuh.
+
+Untuk MVP:
+
+### Offline
+
+Yang boleh:
+
+```text
+✓ buka halaman dasar
+✓ lihat data cache
+✓ shell aplikasi
+```
+
+Yang harus online:
+
+```text
+✗ booking
+✗ payment
+✗ update status
+✗ GPS tracking
+```
+
+---
+
+# 30. Mobile Bottom Navigation
+
+Customer:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│         CONTENT             │
+│                             │
+├─────────────────────────────┤
+│ 🏠    📋      📅      👤   │
+│ Home  Booking  History  Me  │
+└─────────────────────────────┘
+```
+
+Therapist:
+
+```text
+┌─────────────────────────────┐
+│                             │
+│         CONTENT             │
+│                             │
+├─────────────────────────────┤
+│ 🏠    📅      💰      👤   │
+│ Home  Jadwal  Income  Me    │
+└─────────────────────────────┘
+```
+
+---
+
+# 31. Database Schema MVP
+
+Saya sarankan PostgreSQL.
+
+Core tables:
+
+```text
+users
+roles
+customers
+therapists
+
+categories
+services
+
+therapist_services
+
+therapist_schedules
+therapist_time_off
+
+addresses
+
+bookings
+booking_items
+booking_status_histories
+
+payments
+
+reviews
+
+promos
+promo_usages
+
+notifications
+```
+
+Relasi utama:
+
+```text
+users
+ ├── customers
+ └── therapists
+
+categories
+ └── services
+
+therapists
+ ├── therapist_services
+ ├── therapist_schedules
+ └── bookings
+
+customers
+ ├── addresses
+ └── bookings
+
+services
+ └── bookings
+
+bookings
+ ├── payments
+ ├── booking_status_histories
+ └── reviews
+```
+
+---
+
+# 32. Booking Table
+
+Contoh:
+
+```text
+bookings
+
+id
+booking_no
+customer_id
+therapist_id
+service_id
+
+booking_date
+start_time
+end_time
+
+address_id
+
+subtotal
+discount
+service_fee
+total
+
+status
+
+customer_note
+therapist_note
+
+created_at
+updated_at
+```
+
+---
+
+# 33. Security
+
+Minimal:
+
+### Authentication
+
+* Email/password
+* OTP optional
+* Forgot password
+
+### Authorization
+
+RBAC:
+
+```text
+SUPER_ADMIN
+ADMIN
+THERAPIST
+CUSTOMER
+```
+
+### Security
+
+```text
+HTTPS
+JWT/session authentication
+CSRF protection
+Rate limiting
+Input validation
+SQL injection protection
+XSS protection
+File upload validation
+Audit log
+```
+
+---
+
+# 34. Recommended Tech Stack
+
+Melihat kebutuhan Anda, saya justru menyarankan stack yang familiar dan cepat dikembangkan:
+
+### Frontend
+
+**Next.js**
+
+```text
+Next.js
+TypeScript
+Bootstrap 5 / Tailwind
+PWA
+```
+
+Tetapi jika ingin development lebih sederhana:
+
+### Option B
+
+**CodeIgniter 4 + Bootstrap 5**
+
+Menurut saya ini sangat cocok untuk MVP karena:
+
+* cepat development
+* SEO friendly
+* mudah deployment
+* cocok dengan skill PHP
+* PWA tetap bisa
+* responsive mobile
+* backend + frontend dapat dibuat dalam satu project
+
+---
+
+# 35. Architecture
+
+Untuk MVP **jangan microservices**.
+
+Gunakan:
+
+```text
+              ┌───────────────┐
+              │    Browser    │
+              │     PWA       │
+              └───────┬───────┘
+                      │
+                      ▼
+              ┌───────────────┐
+              │   Web App     │
+              │   CI4 / Next  │
+              └───────┬───────┘
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+      PostgreSQL   Payment      Maps
+                   Gateway      API
+```
+
+---
+
+# 36. MVP Scope
+
+Saya akan membagi MVP menjadi **3 tahap**.
+
+## MVP 1 — Booking
+
+Wajib selesai:
+
+* Landing page
+* Register/login
+* Service catalog
+* Service detail
+* Therapist
+* Therapist profile
+* Schedule
+* Booking
+* Address
+* Booking status
+* Customer dashboard
+* Therapist dashboard
+* Admin dashboard
+
+---
+
+## MVP 2 — Payment
+
+Tambahkan:
+
+* Payment gateway
+* QRIS
+* VA
+* Payment callback
+* Invoice
+* Commission
+* Revenue report
+
+---
+
+## MVP 3 — Engagement
+
+Tambahkan:
+
+* Rating
+* Review
+* Promo
+* Voucher
+* Notification
+* Web Push
+* WhatsApp notification
+
+---
+
+# 37. Fitur yang JANGAN dibuat dulu
+
+Ini penting agar MVP tidak membengkak.
+
+Jangan dulu:
+
+❌ Live GPS tracking
+❌ Video consultation
+❌ Membership
+❌ Subscription
+❌ Loyalty point
+❌ Referral system
+❌ AI diagnosis
+❌ Medical record kompleks
+❌ Multi-country
+❌ Dynamic pricing
+❌ Wallet
+❌ Marketplace terbuka
+❌ Chat real-time kompleks
+
+Live tracking misalnya bisa ditambahkan setelah jumlah booking sudah cukup.
+
+---
+
+# 38. Admin Workflow
+
+```text
+Admin membuat Service
+        ↓
+Admin menambahkan Therapist
+        ↓
+Therapist menentukan jadwal
+        ↓
+Customer memilih Service
+        ↓
+Customer memilih Therapist
+        ↓
+Customer memilih Slot
+        ↓
+Customer melakukan Booking
+        ↓
+Customer Payment
+        ↓
+Therapist menerima
+        ↓
+Therapist datang
+        ↓
+Service
+        ↓
+Complete
+        ↓
+Customer Review
+        ↓
+Commission dihitung
+```
+
+---
+
+# 39. KPI MVP
+
+Jangan hanya mengukur jumlah user.
+
+Gunakan:
+
+### Acquisition
+
+```text
+Visitor
+↓
+Register
+↓
+First Booking
+```
+
+### Conversion
+
+```text
+Visitor → Booking
+```
+
+Target awal:
+
+**5–10%**
+
+### Operational
+
+```text
+Booking Success Rate
+Cancellation Rate
+Therapist Acceptance Rate
+On-time Arrival Rate
+```
+
+### Financial
+
+```text
+GMV
+Platform Revenue
+Average Order Value
+Revenue/Therapist
+```
+
+---
+
+# 40. Dashboard Business
+
+Admin harus bisa melihat:
+
+```text
+TODAY
+
+Booking             32
+Completed           26
+Cancelled            3
+Pending              3
+
+GMV
+Rp4.850.000
+
+Platform Revenue
+Rp970.000
+
+Active Therapist
+18
+
+New Customer
+12
+```
+
+Kemudian grafik:
+
+```text
+Booking / Day
+Revenue / Day
+Top Services
+Top Therapists
+```
+
+---
+
+# 41. Contoh Pricing
+
+Untuk MVP bisa dimulai:
+
+| Layanan       |  Harga |
+| ------------- | -----: |
+| Refleksi 60m  | Rp100K |
+| Massage 60m   | Rp120K |
+| Bekam         | Rp150K |
+| Bekam Premium | Rp200K |
+| Akupunktur    | Rp200K |
+
+Tambahkan:
+
+**Home Service Fee**
+
+misalnya:
+
+```text
+0–5 km     Rp10K
+5–10 km    Rp20K
+10–15 km   Rp30K
+```
+
+Ini nantinya bisa dibuat berdasarkan jarak GPS.
+
+---
+
+# 42. Struktur Menu
+
+### Customer
+
+```text
+Home
+Layanan
+Terapis
+Booking
+Riwayat
+Profile
+```
+
+### Therapist
+
+```text
+Dashboard
+Booking
+Jadwal
+Pendapatan
+Profile
+```
+
+### Admin
+
+```text
+Dashboard
+
+Master
+ ├── Categories
+ ├── Services
+ ├── Therapists
+ └── Customers
+
+Transactions
+ ├── Bookings
+ ├── Payments
+ └── Reviews
+
+Marketing
+ ├── Promo
+ └── Voucher
+
+Reports
+ ├── Sales
+ ├── Booking
+ ├── Commission
+ └── Therapist
+
+Settings
+```
+
+---
+
+# 43. Definisi "MVP Selesai"
+
+MVP dianggap berhasil apabila:
+
+> **Customer dapat melakukan booking layanan home care dari HP sampai pembayaran dan layanan selesai tanpa bantuan admin.**
+
+Dan:
+
+> **Terapis dapat menerima booking, melihat lokasi customer, mengubah status kunjungan, dan menyelesaikan layanan dari HP.**
+
+Sementara:
+
+> **Admin dapat mengelola layanan, terapis, booking, pembayaran dan laporan.**
+
+Itu sudah cukup untuk **launch versi pertama**.
+
+---
+
+## Rekomendasi saya
+
+Untuk model bisnis ini, saya akan membuatnya **bukan sekadar aplikasi booking pijat**, tetapi dari awal menggunakan konsep:
+
+**Home Care Service Platform**
+
+sehingga nantinya bisa berkembang:
+
+```text
+                  HOME CARE
+                      │
+       ┌──────────────┼──────────────┐
+       │              │              │
+    Wellness       Beauty        Healthcare*
+       │              │              │
+   ┌───┼───┐      ┌───┼───┐      ┌───┼───┐
+   │   │   │      │   │   │      │   │   │
+ Bekam  Pijat  Refleksi  Facial  Hair  Nails  ...
+```
+
+Dengan demikian **category + service + therapist** menjadi engine utama, bukan membuat aplikasi khusus "bekam".
+
+Untuk tahap coding, saya paling merekomendasikan **CodeIgniter 4 + Bootstrap 5 + PostgreSQL + PWA + Leaflet + payment gateway**, karena cukup ringan untuk MVP dan mudah dikembangkan menjadi multi-cabang/multi-terapis.

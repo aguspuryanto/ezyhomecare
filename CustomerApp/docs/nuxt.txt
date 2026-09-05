@@ -1,0 +1,1421 @@
+Bisa. Untuk **EzyHomeCare MVP**, saya sarankan langsung kita bangun dengan **Nuxt 4 + Capacitor 8**, sehingga satu codebase bisa menjadi:
+
+**Web responsive → PWA → Android → iOS**
+
+Referensi Capgo yang Anda berikan memang menggunakan pola Nuxt 4 + static generation + Capacitor 8. Nuxt 4 juga sudah menggunakan struktur `app/` untuk kode aplikasi, terpisah dari `server/`, `public/`, dan konfigurasi di root. ([capgo.app][1])
+
+Di bawah ini saya buatkan **blueprint project MVP yang siap Anda inisialisasi dan lanjut coding**.
+
+---
+
+# 1. Stack EzyHomeCare MVP
+
+```text
+Frontend
+├── Nuxt 4
+├── Vue 3
+├── TypeScript
+├── Nuxt UI
+└── PWA
+
+Mobile
+└── Capacitor 8
+
+Backend
+└── Nuxt Server API / Nitro
+
+Database
+└── PostgreSQL
+
+Maps
+└── Leaflet + OpenStreetMap
+
+Payment
+└── Midtrans / Xendit
+
+Authentication
+└── Session / JWT
+
+Deployment
+├── Web → VPS / Cloud
+└── Mobile → Android / iOS
+```
+
+Nuxt sendiri mendukung `nuxt generate` untuk menghasilkan static output, yang sesuai dengan kebutuhan Capacitor. ([nuxt.com][2])
+
+Capacitor 8 menjadi native runtime untuk Android/iOS, tetapi tetap memungkinkan codebase web yang sama digunakan sebagai dasar aplikasi mobile. ([Capacitor][3])
+
+---
+
+# 2. Inisialisasi Project
+
+Karena referensi Capgo menggunakan Bun, kita bisa mengikuti pendekatan tersebut. ([capgo.app][1])
+
+```bash
+bunx nuxi@latest init ezyhomecare
+
+cd ezyhomecare
+
+bun install
+```
+
+Atau jika Anda lebih nyaman menggunakan npm:
+
+```bash
+npm create nuxt@latest ezyhomecare
+
+cd ezyhomecare
+
+npm install
+```
+
+Nuxt CLI resmi saat ini mendukung `npm create nuxt@latest` untuk membuat project baru. ([nuxt.com][4])
+
+---
+
+# 3. Install UI
+
+Saya rekomendasikan Nuxt UI untuk mempercepat MVP.
+
+```bash
+bun add @nuxt/ui
+```
+
+Kemudian:
+
+```bash
+bun add @iconify/vue
+```
+
+Untuk icon kita bisa menggunakan Iconify.
+
+---
+
+# 4. Install Capacitor
+
+```bash
+bun add @capacitor/core
+
+bun add -D @capacitor/cli
+```
+
+Kemudian plugin dasar:
+
+```bash
+bun add \
+@capacitor/app \
+@capacitor/keyboard \
+@capacitor/splash-screen \
+@capacitor/status-bar \
+@capacitor/preferences
+```
+
+Ini mengikuti plugin dasar yang direkomendasikan dalam referensi Capgo: lifecycle, keyboard, splash screen, status bar, dan native preferences. ([capgo.app][1])
+
+---
+
+# 5. Install Android & iOS
+
+```bash
+bun add @capacitor/android @capacitor/ios
+```
+
+Kemudian:
+
+```bash
+bunx cap add android
+
+bunx cap add ios
+```
+
+Capacitor akan menghasilkan:
+
+```text
+android/
+ios/
+```
+
+sebagai native projects. ([capgo.app][1])
+
+---
+
+# 6. Struktur Project
+
+Nuxt 4 menggunakan struktur `app/` sebagai tempat kode frontend. ([nuxt.com][5])
+
+Saya sarankan EzyHomeCare:
+
+```text
+ezyhomecare/
+│
+├── app/
+│   │
+│   ├── assets/
+│   │   └── css/
+│   │       └── main.css
+│   │
+│   ├── components/
+│   │   │
+│   │   ├── common/
+│   │   │   ├── AppHeader.vue
+│   │   │   ├── AppBottomNav.vue
+│   │   │   ├── AppButton.vue
+│   │   │   └── EmptyState.vue
+│   │   │
+│   │   ├── service/
+│   │   │   ├── ServiceCard.vue
+│   │   │   ├── ServiceCategory.vue
+│   │   │   └── ServiceDetail.vue
+│   │   │
+│   │   ├── therapist/
+│   │   │   ├── TherapistCard.vue
+│   │   │   └── TherapistRating.vue
+│   │   │
+│   │   └── booking/
+│   │       ├── BookingCard.vue
+│   │       ├── BookingTimeline.vue
+│   │       └── BookingSummary.vue
+│   │
+│   ├── composables/
+│   │   ├── useAuth.ts
+│   │   ├── useBooking.ts
+│   │   ├── useService.ts
+│   │   ├── useTherapist.ts
+│   │   └── usePayment.ts
+│   │
+│   ├── layouts/
+│   │   ├── default.vue
+│   │   ├── customer.vue
+│   │   ├── therapist.vue
+│   │   └── admin.vue
+│   │
+│   ├── middleware/
+│   │   ├── auth.ts
+│   │   ├── therapist.ts
+│   │   └── admin.ts
+│   │
+│   ├── pages/
+│   │   │
+│   │   ├── index.vue
+│   │   │
+│   │   ├── login.vue
+│   │   ├── register.vue
+│   │   │
+│   │   ├── services/
+│   │   │   ├── index.vue
+│   │   │   └── [slug].vue
+│   │   │
+│   │   ├── therapists/
+│   │   │   └── [id].vue
+│   │   │
+│   │   ├── booking/
+│   │   │   ├── index.vue
+│   │   │   ├── schedule.vue
+│   │   │   ├── address.vue
+│   │   │   ├── checkout.vue
+│   │   │   └── success.vue
+│   │   │
+│   │   ├── bookings/
+│   │   │   ├── index.vue
+│   │   │   └── [id].vue
+│   │   │
+│   │   ├── profile/
+│   │   │   └── index.vue
+│   │   │
+│   │   ├── therapist/
+│   │   │   ├── index.vue
+│   │   │   ├── bookings/
+│   │   │   ├── schedule.vue
+│   │   │   └── income.vue
+│   │   │
+│   │   └── admin/
+│   │       ├── index.vue
+│   │       ├── services.vue
+│   │       ├── therapists.vue
+│   │       ├── customers.vue
+│   │       ├── bookings.vue
+│   │       ├── payments.vue
+│   │       └── reports.vue
+│   │
+│   ├── plugins/
+│   │   └── capacitor.client.ts
+│   │
+│   ├── utils/
+│   │   ├── currency.ts
+│   │   ├── date.ts
+│   │   └── booking.ts
+│   │
+│   ├── app.vue
+│   └── app.config.ts
+│
+├── server/
+│   ├── api/
+│   │   ├── auth/
+│   │   ├── services/
+│   │   ├── therapists/
+│   │   ├── bookings/
+│   │   ├── payments/
+│   │   └── users/
+│   │
+│   ├── middleware/
+│   │
+│   └── utils/
+│       └── db.ts
+│
+├── shared/
+│   ├── types/
+│   │   ├── user.ts
+│   │   ├── service.ts
+│   │   ├── therapist.ts
+│   │   └── booking.ts
+│   │
+│   └── constants/
+│       └── booking.ts
+│
+├── public/
+│   ├── icons/
+│   ├── images/
+│   └── logo.svg
+│
+├── android/
+├── ios/
+│
+├── capacitor.config.ts
+├── nuxt.config.ts
+├── package.json
+└── tsconfig.json
+```
+
+Ini sengaja mengikuti pola Nuxt 4: `app/` untuk application code, sedangkan `server/`, `public/`, `shared/`, dan konfigurasi tetap di root. ([nuxt.com][6])
+
+---
+
+# 7. Nuxt Config
+
+Buat:
+
+```text
+nuxt.config.ts
+```
+
+Isi:
+
+```ts
+export default defineNuxtConfig({
+  compatibilityDate: '2025-01-15',
+
+  devtools: {
+    enabled: true
+  },
+
+  modules: [
+    '@nuxt/ui'
+  ],
+
+  css: [
+    '~/assets/css/main.css'
+  ],
+
+  ssr: true,
+
+  nitro: {
+    preset: 'static'
+  },
+
+  app: {
+    head: {
+      title: 'EzyHomeCare',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'Layanan wellness dan home care langsung ke rumah.'
+        },
+
+        {
+          name: 'theme-color',
+          content: '#16877A'
+        },
+
+        {
+          name: 'viewport',
+          content:
+            'width=device-width, initial-scale=1, maximum-scale=1'
+        }
+      ]
+    }
+  }
+})
+```
+
+Konfigurasi `nitro.preset: 'static'` adalah pola yang digunakan referensi Capgo untuk menghasilkan asset yang dapat dipakai Capacitor. ([capgo.app][1])
+
+---
+
+# 8. Capacitor Config
+
+Buat:
+
+```text
+capacitor.config.ts
+```
+
+```ts
+import type { CapacitorConfig } from '@capacitor/cli'
+
+const config: CapacitorConfig = {
+  appId: 'com.ezytekno.ezyhomecare',
+
+  appName: 'EzyHomeCare',
+
+  webDir: '.output/public',
+
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 1500,
+      launchAutoHide: true,
+      androidScaleType: 'CENTER_CROP',
+      splashFullScreen: true,
+      splashImmersive: true
+    },
+
+    Keyboard: {
+      resize: 'body',
+      resizeOnFullScreen: true
+    },
+
+    StatusBar: {
+      style: 'dark'
+    }
+  }
+}
+
+export default config
+```
+
+Perhatikan `webDir`:
+
+```text
+.output/public
+```
+
+karena itulah hasil static generation Nuxt yang digunakan sebagai web assets oleh Capacitor. ([capgo.app][1])
+
+---
+
+# 9. Package Scripts
+
+Saya sarankan `package.json`:
+
+```json
+{
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
+
+    "mobile": "bun run generate && bunx cap sync",
+
+    "mobile:android": "bun run mobile && bunx cap open android",
+
+    "mobile:ios": "bun run mobile && bunx cap open ios",
+
+    "cap:sync": "bunx cap sync",
+
+    "cap:copy": "bunx cap copy",
+
+    "cap:open:android": "bunx cap open android",
+
+    "cap:open:ios": "bunx cap open ios"
+  }
+}
+```
+
+Referensi Capgo juga menggunakan pola `generate → cap sync → open android/ios`. ([capgo.app][1])
+
+---
+
+# 10. App.vue
+
+```vue
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>
+```
+
+---
+
+# 11. Main CSS
+
+`app/assets/css/main.css`
+
+```css
+:root {
+  --ez-primary: #16877a;
+  --ez-primary-dark: #10665d;
+
+  --ez-background: #f7f9f8;
+  --ez-surface: #ffffff;
+
+  --ez-text: #172321;
+  --ez-muted: #7f8c89;
+
+  --ez-radius: 16px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ez-background);
+  color: var(--ez-text);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+button {
+  touch-action: manipulation;
+}
+```
+
+---
+
+# 12. Customer Layout
+
+`app/layouts/customer.vue`
+
+```vue
+<template>
+  <div class="min-h-screen bg-[#F7F9F8]">
+
+    <header
+      class="sticky top-0 z-40 border-b bg-white/95 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-6xl items-center
+               justify-between px-4"
+      >
+        <NuxtLink
+          to="/"
+          class="text-xl font-bold text-[#16877A]"
+        >
+          EzyHomeCare
+        </NuxtLink>
+
+        <button class="rounded-full p-2">
+          🔔
+        </button>
+      </div>
+    </header>
+
+    <main class="pb-24">
+      <slot />
+    </main>
+
+    <nav
+      class="fixed bottom-0 left-0 right-0 z-50
+             border-t bg-white"
+    >
+      <div class="mx-auto flex max-w-lg justify-around">
+
+        <NuxtLink
+          to="/"
+          class="flex flex-col items-center px-4 py-3 text-xs"
+        >
+          🏠
+          <span>Home</span>
+        </NuxtLink>
+
+        <NuxtLink
+          to="/bookings"
+          class="flex flex-col items-center px-4 py-3 text-xs"
+        >
+          📅
+          <span>Booking</span>
+        </NuxtLink>
+
+        <NuxtLink
+          to="/profile"
+          class="flex flex-col items-center px-4 py-3 text-xs"
+        >
+          👤
+          <span>Profile</span>
+        </NuxtLink>
+
+      </div>
+    </nav>
+
+  </div>
+</template>
+```
+
+---
+
+# 13. Homepage MVP
+
+`app/pages/index.vue`
+
+```vue
+<script setup lang="ts">
+
+definePageMeta({
+  layout: 'customer'
+})
+
+const categories = [
+  {
+    name: 'Bekam',
+    icon: '🩹'
+  },
+  {
+    name: 'Pijat',
+    icon: '💆'
+  },
+  {
+    name: 'Refleksi',
+    icon: '🦶'
+  },
+  {
+    name: 'Akupunktur',
+    icon: '🩺'
+  }
+]
+
+const services = [
+  {
+    id: 1,
+    name: 'Bekam Sunnah',
+    duration: 60,
+    rating: 4.9,
+    reviews: 128,
+    price: 150000,
+    image: '/images/bekam.jpg'
+  },
+  {
+    id: 2,
+    name: 'Pijat Refleksi',
+    duration: 60,
+    rating: 4.8,
+    reviews: 96,
+    price: 100000,
+    image: '/images/refleksi.jpg'
+  }
+]
+
+const formatPrice = (value: number) => {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    maximumFractionDigits: 0
+  }).format(value)
+}
+
+</script>
+
+<template>
+
+  <div>
+
+    <!-- Hero -->
+
+    <section
+      class="bg-[#16877A] px-4 pb-8 pt-8 text-white"
+    >
+
+      <div class="mx-auto max-w-6xl">
+
+        <p class="text-sm opacity-80">
+          Selamat datang 👋
+        </p>
+
+        <h1
+          class="mt-1 text-2xl font-bold"
+        >
+          Perawatan langsung
+          ke rumah Anda.
+        </h1>
+
+        <div
+          class="mt-6 flex items-center rounded-xl bg-white px-4 py-3"
+        >
+
+          <span class="mr-3">
+            🔍
+          </span>
+
+          <input
+            type="text"
+            placeholder="Cari layanan..."
+            class="w-full bg-transparent
+                   text-gray-900 outline-none"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Categories -->
+
+    <section class="px-4 py-6">
+
+      <div class="mx-auto max-w-6xl">
+
+        <div class="mb-4 flex items-center justify-between">
+
+          <h2 class="font-semibold">
+            Layanan
+          </h2>
+
+          <NuxtLink
+            to="/services"
+            class="text-sm text-[#16877A]"
+          >
+            Lihat semua
+          </NuxtLink>
+
+        </div>
+
+        <div
+          class="grid grid-cols-4 gap-3"
+        >
+
+          <NuxtLink
+            v-for="category in categories"
+            :key="category.name"
+            to="/services"
+            class="flex flex-col items-center
+                   rounded-2xl bg-white p-4 shadow-sm"
+          >
+
+            <div
+              class="mb-2 flex h-12 w-12
+                     items-center justify-center
+                     rounded-full bg-[#E8F5F2]
+                     text-2xl"
+            >
+              {{ category.icon }}
+            </div>
+
+            <span
+              class="text-xs font-medium"
+            >
+              {{ category.name }}
+            </span>
+
+          </NuxtLink>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Services -->
+
+    <section class="px-4 pb-8">
+
+      <div class="mx-auto max-w-6xl">
+
+        <h2 class="mb-4 font-semibold">
+          Layanan Populer
+        </h2>
+
+        <div class="grid gap-4 md:grid-cols-2">
+
+          <article
+            v-for="service in services"
+            :key="service.id"
+            class="overflow-hidden rounded-2xl bg-white
+                   shadow-sm"
+          >
+
+            <img
+              :src="service.image"
+              :alt="service.name"
+              class="h-48 w-full object-cover"
+            />
+
+            <div class="p-4">
+
+              <h3 class="font-semibold">
+                {{ service.name }}
+              </h3>
+
+              <div
+                class="mt-1 flex items-center gap-2
+                       text-sm text-gray-500"
+              >
+                <span>
+                  ⭐ {{ service.rating }}
+                </span>
+
+                <span>
+                  ({{ service.reviews }})
+                </span>
+
+                <span>
+                  • {{ service.duration }} menit
+                </span>
+              </div>
+
+              <div
+                class="mt-4 flex items-center
+                       justify-between"
+              >
+
+                <strong>
+                  {{ formatPrice(service.price) }}
+                </strong>
+
+                <NuxtLink
+                  :to="`/services/${service.id}`"
+                  class="rounded-xl bg-[#16877A]
+                         px-4 py-2 text-sm
+                         font-semibold text-white"
+                >
+                  Pesan
+                </NuxtLink>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</template>
+```
+
+---
+
+# 14. Booking State
+
+Saya sarankan booking dibuat menggunakan composable.
+
+`app/composables/useBooking.ts`
+
+```ts
+export interface BookingState {
+  serviceId?: number
+  therapistId?: number
+
+  date?: string
+  startTime?: string
+  endTime?: string
+
+  addressId?: number
+
+  subtotal: number
+  serviceFee: number
+  discount: number
+  total: number
+}
+
+export const useBooking = () => {
+
+  const booking = useState<BookingState>(
+    'booking',
+    () => ({
+      subtotal: 0,
+      serviceFee: 0,
+      discount: 0,
+      total: 0
+    })
+  )
+
+  const setService = (
+    serviceId: number,
+    price: number
+  ) => {
+
+    booking.value.serviceId = serviceId
+
+    booking.value.subtotal = price
+
+    booking.value.total =
+      price +
+      booking.value.serviceFee -
+      booking.value.discount
+  }
+
+  const setSchedule = (
+    date: string,
+    startTime: string,
+    endTime: string
+  ) => {
+
+    booking.value.date = date
+    booking.value.startTime = startTime
+    booking.value.endTime = endTime
+  }
+
+  const setAddress = (
+    addressId: number
+  ) => {
+
+    booking.value.addressId = addressId
+  }
+
+  return {
+    booking,
+    setService,
+    setSchedule,
+    setAddress
+  }
+}
+```
+
+---
+
+# 15. Booking Flow
+
+Dengan ini flow frontend:
+
+```text
+/services/[slug]
+        │
+        ▼
+/booking
+        │
+        ▼
+/booking/schedule
+        │
+        ▼
+/booking/address
+        │
+        ▼
+/booking/checkout
+        │
+        ▼
+/booking/success
+```
+
+Ini sesuai dengan desain UX yang kita buat sebelumnya.
+
+---
+
+# 16. API Architecture
+
+Nuxt server bisa kita manfaatkan untuk API MVP.
+
+Contoh:
+
+```text
+server/api/
+
+auth/
+ ├── login.post.ts
+ ├── register.post.ts
+ └── logout.post.ts
+
+services/
+ ├── index.get.ts
+ └── [id].get.ts
+
+therapists/
+ ├── index.get.ts
+ ├── [id].get.ts
+ └── [id]/schedule.get.ts
+
+bookings/
+ ├── index.get.ts
+ ├── index.post.ts
+ ├── [id].get.ts
+ └── [id]/status.patch.ts
+
+payments/
+ ├── create.post.ts
+ └── webhook.post.ts
+```
+
+---
+
+# 17. Database MVP
+
+Saya akan gunakan PostgreSQL.
+
+Schema awal:
+
+```text
+users
+roles
+
+customers
+therapists
+
+service_categories
+services
+
+therapist_services
+
+therapist_schedules
+therapist_time_off
+
+addresses
+
+bookings
+booking_status_histories
+
+payments
+
+reviews
+```
+
+---
+
+# 18. Booking Status
+
+Gunakan enum:
+
+```ts
+export const BOOKING_STATUS = {
+
+  PENDING_PAYMENT:
+    'pending_payment',
+
+  PAID:
+    'paid',
+
+  WAITING_THERAPIST:
+    'waiting_therapist',
+
+  CONFIRMED:
+    'confirmed',
+
+  ON_THE_WAY:
+    'on_the_way',
+
+  ARRIVED:
+    'arrived',
+
+  IN_SERVICE:
+    'in_service',
+
+  COMPLETED:
+    'completed',
+
+  CANCELLED:
+    'cancelled'
+
+} as const
+```
+
+---
+
+# 19. Backend API
+
+Contoh:
+
+`server/api/bookings/index.post.ts`
+
+```ts
+export default defineEventHandler(async (event) => {
+
+  const body = await readBody(event)
+
+  if (!body.serviceId) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Service wajib dipilih'
+    })
+  }
+
+  if (!body.date) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Tanggal wajib dipilih'
+    })
+  }
+
+  // TODO:
+  // validate therapist
+  // validate schedule
+  // prevent double booking
+  // calculate price
+  // save booking
+
+  return {
+    success: true,
+    data: {
+      bookingNo: 'BK-20260901-0001',
+      status: 'pending_payment'
+    }
+  }
+})
+```
+
+---
+
+# 20. Mobile Architecture
+
+Kita akan memiliki:
+
+```text
+                 EzyHomeCare
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+       Browser                Capacitor
+          │                       │
+          ▼                       ▼
+      Nuxt Web              Android / iOS
+          │                       │
+          └───────────┬───────────┘
+                      │
+                      ▼
+                Backend API
+                      │
+                      ▼
+                 PostgreSQL
+```
+
+Ini kelebihan utama pendekatan ini:
+
+**tidak perlu membuat Flutter/React Native terpisah untuk MVP.**
+
+---
+
+# 21. PWA
+
+Untuk PWA, tambahkan module PWA:
+
+```bash
+bun add @vite-pwa/nuxt
+```
+
+Kemudian:
+
+```ts
+modules: [
+  '@nuxt/ui',
+  '@vite-pwa/nuxt'
+]
+```
+
+Config:
+
+```ts
+pwa: {
+  registerType: 'autoUpdate',
+
+  manifest: {
+    name: 'EzyHomeCare',
+    short_name: 'EzyHomeCare',
+    description:
+      'Layanan wellness langsung ke rumah',
+
+    theme_color: '#16877A',
+    background_color: '#F7F9F8',
+
+    display: 'standalone',
+
+    icons: [
+      {
+        src: '/icons/pwa-192.png',
+        sizes: '192x192',
+        type: 'image/png'
+      },
+      {
+        src: '/icons/pwa-512.png',
+        sizes: '512x512',
+        type: 'image/png'
+      }
+    ]
+  }
+}
+```
+
+Jadi:
+
+```text
+Web
+ ↓
+Install PWA
+ ↓
+Home Screen
+ ↓
+EzyHomeCare
+```
+
+dan:
+
+```text
+Nuxt
+ ↓
+Generate
+ ↓
+Capacitor
+ ↓
+Android APK/AAB
+```
+
+---
+
+# 22. Development Flow
+
+### Web development
+
+```bash
+bun run dev
+```
+
+akses:
+
+```text
+http://localhost:3000
+```
+
+### Build production
+
+```bash
+bun run build
+```
+
+### Generate mobile
+
+```bash
+bun run generate
+```
+
+### Sync Capacitor
+
+```bash
+bunx cap sync
+```
+
+### Android
+
+```bash
+bunx cap open android
+```
+
+### iOS
+
+```bash
+bunx cap open ios
+```
+
+Atau kita sederhanakan:
+
+```bash
+bun run mobile:android
+```
+
+Referensi Capgo menggunakan pola yang sama untuk generate, sync, dan membuka project native. ([capgo.app][1])
+
+---
+
+# 23. MVP Sprint
+
+Saya akan membangun EzyHomeCare dalam **4 sprint**.
+
+### Sprint 1 — UI/UX
+
+```text
+✓ Design system
+✓ Homepage
+✓ Services
+✓ Therapist
+✓ Booking flow
+✓ Customer profile
+✓ Responsive
+✓ PWA
+```
+
+### Sprint 2 — Backend
+
+```text
+✓ Authentication
+✓ Customer
+✓ Therapist
+✓ Services
+✓ Schedule
+✓ Booking
+✓ Booking status
+```
+
+### Sprint 3 — Operational
+
+```text
+✓ Therapist dashboard
+✓ Admin dashboard
+✓ Payment
+✓ Commission
+✓ Review
+```
+
+### Sprint 4 — Mobile
+
+```text
+✓ Capacitor
+✓ Android
+✓ iOS
+✓ Splash screen
+✓ Status bar
+✓ Native preferences
+✓ Deep link
+✓ Push notification
+```
+
+---
+
+# 24. Yang Saya Sarankan untuk MVP Pertama
+
+**Jangan langsung membuat payment gateway.**
+
+Urutannya:
+
+```text
+PHASE 1
+
+Customer
+    ↓
+Pilih layanan
+    ↓
+Pilih therapist
+    ↓
+Pilih jadwal
+    ↓
+Alamat
+    ↓
+Booking
+    ↓
+Admin/Therapist menerima
+    ↓
+Complete
+```
+
+Setelah workflow ini stabil:
+
+```text
+PHASE 2
+
+Booking
+    ↓
+Payment Gateway
+    ↓
+Payment Callback
+    ↓
+Commission
+```
+
+Kemudian:
+
+```text
+PHASE 3
+
+GPS
+Push Notification
+WhatsApp
+Rating
+Promo
+Voucher
+```
+
+Dengan begitu kita tidak terjebak membuat **“aplikasi besar sebelum ada transaksi pertama.”**
+
+---
+
+# 25. Target MVP yang Realistis
+
+Versi pertama EzyHomeCare cukup memiliki:
+
+```text
+CUSTOMER
+────────────
+Home
+Services
+Service Detail
+Therapist
+Schedule
+Address
+Checkout
+Booking
+History
+Profile
+
+
+THERAPIST
+────────────
+Dashboard
+Booking
+Schedule
+Booking Detail
+Update Status
+Income
+
+
+ADMIN
+────────────
+Dashboard
+Services
+Therapist
+Customer
+Booking
+Payment
+Reports
+```
+
+**Total ±25 layar**, tetapi banyak komponen bisa digunakan ulang.
+
+---
+
+## Langkah berikutnya yang paling tepat
+
+Karena sebelumnya kita sudah membuat **PRD + UI/UX EzyHomeCare**, saya sarankan project ini langsung kita turunkan menjadi **MVP coding structure**, bukan sekadar boilerplate.
+
+Urutan implementasi saya:
+
+```text
+01. Nuxt 4 + TypeScript
+        ↓
+02. Nuxt UI + Design System
+        ↓
+03. PWA
+        ↓
+04. Customer UI
+        ↓
+05. Booking Engine
+        ↓
+06. Therapist UI
+        ↓
+07. Admin UI
+        ↓
+08. PostgreSQL
+        ↓
+09. API
+        ↓
+10. Payment
+        ↓
+11. Capacitor Android/iOS
+```
+
+Dengan pendekatan ini, **web, PWA, dan mobile Android/iOS tetap berasal dari satu codebase Nuxt 4**, sementara Capacitor menjadi lapisan native. Itu juga sejalan dengan arsitektur yang dijelaskan dalam referensi Capgo terbaru untuk Nuxt 4 + Capacitor 8. ([capgo.app][1])
+
+[1]: https://capgo.app/blog/nuxt-mobile-app-capacitor-from-scratch/ "Build a Nuxt Mobile App from Scratch with Capacitor 8"
+[2]: https://nuxt.com/docs/4.x/getting-started/prerendering?utm_source=chatgpt.com "Prerendering · Get Started with Nuxt v4"
+[3]: https://capacitorjs.com/docs?utm_source=chatgpt.com "Capacitor - Cross-platform Native Runtime for Web Apps | Capacitor Documentation"
+[4]: https://nuxt.com/docs/4.x/api/commands/init/?utm_source=chatgpt.com "create nuxt · Nuxt CLI v4"
+[5]: https://nuxt.com/docs/4.x/directory-structure/nuxt?utm_source=chatgpt.com ".nuxt · Nuxt Directory Structure v4"
+[6]: https://nuxt.com/docs/4.x/getting-started/upgrade?utm_source=chatgpt.com "Upgrade Guide · Get Started with Nuxt v4"
