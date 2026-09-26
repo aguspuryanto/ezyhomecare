@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+    a { color: #00685d; }
+    a:hover { color: #0c8376; }
+    .scrollarea::-webkit-scrollbar { width: 0; height: 0; }
+    .btn { border: none; cursor: pointer; font-family: inherit; }
+  </style>
+</helmet>
+
+<div style="width:390px;height:844px;overflow:hidden;position:relative;background:#edfdf8;display:flex;flex-direction:column;color:#111e1c;">
+
+  <div class="scrollarea" style="flex:1;overflow-y:auto;padding:18px 20px 110px 20px;display:flex;flex-direction:column;gap:20px;">
+
+    <!-- Top brand bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:34px;height:34px;border-radius:10px;background:#00685d;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;">CH</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:17px;font-weight:700;">CareHome</span>
+          <span style="background:#0c8376;color:#f4fffb;font-size:10px;font-weight:700;letter-spacing:0.04em;padding:3px 7px;border-radius:8px;">MITRA</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:12px;font-weight:600;color:#3e4947;">Siaga</span>
+          <div style="width:38px;height:22px;border-radius:9999px;background:#00685d;position:relative;padding:2px;">
+            <div style="width:18px;height:18px;border-radius:9999px;background:#fff;margin-left:16px;"></div>
+          </div>
+        </div>
+        <div style="position:relative;color:#3e4947;">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 4 1.5 5.5 1.5 5.5H4.5S6 13 6 9z"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg>
+        </div>
+        <div style="width:34px;height:34px;border-radius:9999px;background:#0c8376;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;">AF</div>
+      </div>
+    </div>
+
+    <!-- Page title -->
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <span style="font-size:20px;font-weight:700;">Kelola Layanan</span>
+      <span style="font-size:13px;color:#3e4947;">Kredensial, keahlian &amp; kesiapan perlengkapan medis</span>
+    </div>
+
+    <!-- Credential verification -->
+    <div style="background:#ffffff;border:1px solid #e5e9e8;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(22,135,122,0.06);display:flex;flex-direction:column;gap:12px;">
+      <span style="font-size:15px;font-weight:700;">Kredensial &amp; Izin Praktik</span>
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;background:#e8f3f2;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00685d" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.4 8.4-7 9-3.6-.6-7-4-7-9V6l7-3z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="#00685d" stroke="none"><circle cx="12" cy="12" r="10"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="#e8f3f2" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-size:13px;font-weight:700;">Kemenkes RI</span>
+            <span style="font-size:11px;color:#00685d;font-weight:600;">Terverifikasi &bull; STR Aktif</span>
+          </div>
+        </div>
+        <div style="flex:1;background:#e8f3f2;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00685d" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.4 8.4-7 9-3.6-.6-7-4-7-9V6l7-3z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="#00685d" stroke="none"><circle cx="12" cy="12" r="10"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8" stroke="#e8f3f2" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-size:13px;font-weight:700;">BNSP</span>
+            <span style="font-size:11px;color:#00685d;font-weight:600;">Terverifikasi &bull; Sertifikat Kompetensi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daftar layanan keahlian -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:16px;font-weight:700;">Daftar Layanan Keahlian</span>
+        <span style="font-size:12px;font-weight:600;color:#00685d;">Bagi Hasil 80%</span>
+      </div>
+
+      <div style="background:#ffffff;border:1px solid #e5e9e8;border-radius:16px;padding:14px 16px;box-shadow:0 4px 12px rgba(22,135,122,0.06);display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:14.5px;font-weight:700;">Bekam Sunnah Medis</span>
+          <div style="width:38px;height:22px;border-radius:9999px;background:#00685d;position:relative;padding:2px;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:9999px;background:#fff;margin-left:16px;"></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#f5faf9;border-radius:10px;padding:9px 12px;">
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-size:10.5px;color:#6e7a77;">Tarif Pasien</span>
+            <span style="font-size:13.5px;font-weight:700;">Rp175.000</span>
+          </div>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#bdc9c6" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;">
+            <span style="font-size:10.5px;color:#6e7a77;">Porsi Mitra (80%)</span>
+            <span style="font-size:13.5px;font-weight:700;color:#00685d;">Rp140.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#ffffff;border:1px solid #e5e9e8;border-radius:16px;padding:14px 16px;box-shadow:0 4px 12px rgba(22,135,122,0.06);display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:14.5px;font-weight:700;">Bekam Premium &amp; Akupresur</span>
+          <div style="width:38px;height:22px;border-radius:9999px;background:#00685d;position:relative;padding:2px;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:9999px;background:#fff;margin-left:16px;"></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#f5faf9;border-radius:10px;padding:9px 12px;">
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-size:10.5px;color:#6e7a77;">Tarif Pasien</span>
+            <span style="font-size:13.5px;font-weight:700;">Rp250.000</span>
+          </div>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#bdc9c6" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;">
+            <span style="font-size:10.5px;color:#6e7a77;">Porsi Mitra (80%)</span>
+            <span style="font-size:13.5px;font-weight:700;color:#00685d;">Rp200.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#ffffff;border:1px solid #e5e9e8;border-radius:16px;padding:14px 16px;box-shadow:0 4px 12px rgba(22,135,122,0.06);display:flex;flex-direction:column;gap:10px;opacity:0.72;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:14.5px;font-weight:700;">Pijat Refleksi Relaksasi</span>
+          <div style="width:38px;height:22px;border-radius:9999px;background:#bdc9c6;position:relative;padding:2px;flex-shrink:0;">
+            <div style="width:18px;height:18px;border-radius:9999px;background:#fff;"></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#f5faf9;border-radius:10px;padding:9px 12px;">
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-size:10.5px;color:#6e7a77;">Tarif Pasien</span>
+            <span style="font-size:13.5px;font-weight:700;">Rp150.000</span>
+          </div>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#bdc9c6" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;">
+            <span style="font-size:10.5px;color:#6e7a77;">Porsi Mitra (80%)</span>
+            <span style="font-size:13.5px;font-weight:700;color:#00685d;">Rp120.000</span>
+          </div>
+        </div>
+        <span style="font-size:11px;color:#6e7a77;">Nonaktif &bull; tidak tampil ke pasien</span>
+      </div>
+    </div>
+
+    <!-- Status sertifikasi -->
+    <div style="background:#fff4e8;border:1px solid #f6dbb8;border-radius:16px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#8c4f07" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M12 3l10 18H2L12 3z"/><path d="M12 9v5M12 17.5v.01"/></svg>
+      <div style="display:flex;flex-direction:column;gap:6px;flex:1;">
+        <span style="font-size:13.5px;font-weight:700;color:#744000;">Sertifikat BNSP Bekam Terapis akan kedaluwarsa</span>
+        <span style="font-size:12px;color:#8c4f07;">Berlaku hingga 18 Sep 2026 &bull; 12 hari lagi. Perpanjang sekarang untuk menjaga status aktif layanan.</span>
+        <button class="btn" style="align-self:flex-start;height:36px;padding:0 14px;border-radius:10px;background:#8c4f07;color:#fff;font-size:12.5px;font-weight:600;">Perpanjang Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- Audit kesiapan perlengkapan -->
+    <div style="background:#ffffff;border:1px solid #e5e9e8;border-radius:16px;padding:16px;box-shadow:0 4px 12px rgba(22,135,122,0.06);display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:15px;font-weight:700;">Audit Kesiapan Perlengkapan</span>
+        <span style="font-size:11px;font-weight:700;color:#8c4f07;background:#fff4e8;padding:3px 8px;border-radius:8px;">2/3 Siap</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00685d" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg>
+        <div style="display:flex;flex-direction:column;flex:1;">
+          <span style="font-size:13.5px;font-weight:700;">Autoclave Sterilizer</span>
+          <span style="font-size:11.5px;color:#6e7a77;">Kalibrasi terakhir: 2 Sep 2026</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00685d" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg>
+        <div style="display:flex;flex-direction:column;flex:1;">
+          <span style="font-size:13.5px;font-weight:700;">Sarung Tangan Nitril (Non-Powder)</span>
+          <span style="font-size:11.5px;color:#6e7a77;">Stok: 34 pasang</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ba1a1a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 3l10 18H2L12 3z"/><path d="M12 9v5M12 17.5v.01"/></svg>
+        <div style="display:flex;flex-direction:column;flex:1;">
+          <span style="font-size:13.5px;font-weight:700;">Tensimeter Digital</span>
+          <span style="font-size:11.5px;color:#ba1a1a;">Perlu kalibrasi ulang sebelum kunjungan berikutnya</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:#ffffff;border-top:1px solid #e5e9e8;display:flex;align-items:flex-start;padding:10px 8px 0 8px;box-shadow:0 -4px 16px rgba(0,104,93,0.06);">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#6e7a77;">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+      <span style="font-size:11px;font-weight:600;">Order</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#00685d;">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      <span style="font-size:11px;font-weight:700;">Layanan</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#6e7a77;">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+      <span style="font-size:11px;font-weight:600;">Riwayat</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#6e7a77;">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <span style="font-size:11px;font-weight:600;">Pendapatan</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#6e7a77;">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.2-3.8 4.4-6 7.5-6s6.3 2.2 7.5 6"/></svg>
+      <span style="font-size:11px;font-weight:600;">Profil</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

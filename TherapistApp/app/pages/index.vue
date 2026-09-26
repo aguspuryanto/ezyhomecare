@@ -1,5 +1,5 @@
 <script setup lang="ts">
-navigateTo('/customer')
+await navigateTo('/order')
 </script>
 
 <template>

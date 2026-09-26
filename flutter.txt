@@ -1,0 +1,12 @@
+https://supabase.com/blog/offline-first-flutter-apps
+
+https://supabase.com/docs/guides/getting-started/tutorials/with-flutter
+
+https://chatgpt.com/c/6a96272d-0340-83ec-9fb4-bff78f7101db
+
+# IONIC
+https://ionicframework.com/docs/native/local-notifications
+
+https://capgo.app/blog/angular-mobile-app-capacitor/
+https://capgo.app/blog/building-a-native-mobile-app-with-nextjs-and-capacitor/
+https://capgo.app/blog/nuxt-mobile-app-capacitor-from-scratch/#step-1-create-a-new-nuxt-4-project

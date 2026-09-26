@@ -1,0 +1,9 @@
+{
+  "pid": 19372,
+  "startedAt": 1788772822753,
+  "command": "dev",
+  "cwd": "C:/Users/agusp/Downloads/PROJECT/EZYHOMECARE/TherapistApp",
+  "port": 3000,
+  "hostname": "::1",
+  "url": "http://[::1]:3000"
+}
